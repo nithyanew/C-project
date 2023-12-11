@@ -1,0 +1,15 @@
+/tmp/fHOjWbuxvU.o
+Enter the number of GST options: 3
+Enter GST Type 1 and Percentage (e.g., Luxury 20): a 20
+Enter GST Type 2 and Percentage (e.g., Luxury 20): b 10
+Enter GST Type 3 and Percentage (e.g., Luxury 20): c 5
+Enter the number of items: 3
+Enter details for Item 1 (Name, GST Type, Cost, Quantity): x a 2000 2
+Enter details for Item 2 (Name, GST Type, Cost, Quantity): y b 4000 1
+Enter details for Item 3 (Name, GST Type, Cost, Quantity): z c 200 2
+Item	Type	Cost	Quantity	GST	Total Cost
+x	a	2000.00	2	800.00	5600.00
+y	b	4000.00	1	400.00	4400.00
+z	c	200.00	2	20.00	440.00
+Total amount to be paid 10440.000000
+Total amount of gst 1220.000000Total avg of items 1
