@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+
+struct GST {
+    char type[20];
+    float percentage;
+};
+struct Item {
+    char name[100];
+    char type[20]; 
+    float cost;
+    int quantity;
+};
+
+int main() {
+    int gstCount, itemCount;
+    float finalAmount=0;
+    float finalGst=0;
+    int avgItems=0;
+    
+    // Step 1: Ask user to provide the number of GST options
+    printf("Enter the number of GST options: ");
+    scanf("%d", &gstCount);
+    
+    // Declare an array of GST structures to store GST options
+    struct GST gstOptions[gstCount];
+    
+    // Input GST options
+    for (int i = 0; i < gstCount; i++) {
+        printf("Enter GST Type %d and Percentage (e.g., Luxury 20): ", i + 1);
+        scanf("%s%f", gstOptions[i].type, &gstOptions[i].percentage);
+    }
+    
+    // Step 2: Ask user to enter item count
+    printf("Enter the number of items: ");
+    scanf("%d", &itemCount);
+    
+    // Declare an array of Item structures to store item details
+    struct Item items[itemCount];
+    
+    // Input item details
+    for (int i = 0; i < itemCount; i++) {
+        printf("Enter details for Item %d (Name, GST Type, Cost, Quantity): ", i + 1);
+        scanf("%s%s%f%d", items[i].name, items[i].type, &items[i].cost, &items[i].quantity);
+    }
+    
+    // Print details including GST and total cost
+    printf("\nItem\tType\tCost\tQuantity\tGST\tTotal Cost\n");
+    for (int i = 0; i < itemCount; i++) {
+        float gst = 0.0;
+        for (int j = 0; j < gstCount; j++) {
+            if (strcmp(items[i].type, gstOptions[j].type) == 0) {
+                gst = (items[i].cost*items[i].quantity* gstOptions[j].percentage) / 100;
+                break;
+            }
+        }
+        
+        float totalCost = (items[i].cost + gst) * items[i].quantity;
+        printf("%s\t%s\t%.2f\t%d\t%.2f\t%.2f\n", items[i].name, items[i].type, items[i].cost, items[i].quantity, gst, totalCost);
+        
+        finalAmount = finalAmount + totalCost;
+        finalGst = finalGst + gst;
+        avgItems = avgItems + items[i].quantity;
+    }
+   printf("Total amount to be paid %f\n",finalAmount);
+   printf("Total amount of gst %f",finalGst);
+   printf("Total avg of items %d",avgItems/itemCount);
+    return 0;
+}
